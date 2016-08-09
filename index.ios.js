@@ -6,7 +6,7 @@ import {
   View,
   Text
 } from 'react-native';
-var Welcome = require('./Welcome');
+var Home = require('./Home');
 
 var styles = {
   text: {
@@ -27,7 +27,7 @@ class ComicBoxApp extends Component {
         style={styles.container}
         initialRoute={{
           title: 'Comic Box',
-          component: Welcome,
+          component: Home
         }}/>
     );
   }

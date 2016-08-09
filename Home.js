@@ -1,13 +1,15 @@
 'use strict';
 import React, {Component} from 'react';
+var ComicList = require('./ComicList');
 
 import {
+  NavigatorIOS,
   StyleSheet,
   Text,
   TextInput,
   View,
   TouchableHighlight,
-  ActivityIndicatorIOS,
+  ActivityIndicator,
   Image
 } from 'react-native'
 
@@ -69,14 +71,29 @@ var styles = {
   }
 }
 
-class Welcome extends Component {
+let data = [
+  { title: 'Swamp Thing',
+    issue_no: 35,
+    author: 'Alan Moore'
+}
+]
+
+class Home extends Component {
+  showComics(){
+    this.props.navigator.push({
+      title: 'Comics',
+      component: ComicList,
+      passProps: {comics: data}
+    })
+  }
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Welcome to Comic Box!</Text>
+        <Text style={styles.text}>Comic Box</Text>
         <Image source={require('./resources/pow.jpg')} style={styles.image}/>
         <TouchableHighlight style={styles.button}
-          underlayColor='#99d9f4'>
+          underlayColor='#99d9f4'
+          onPress={() => this.showComics}>
             <Text style={styles.buttonText}>View Comic Collection</Text>
         </TouchableHighlight>
         <TouchableHighlight style={styles.button}
@@ -88,4 +105,4 @@ class Welcome extends Component {
   }
 }
 
-module.exports = Welcome;
+module.exports = Home;
