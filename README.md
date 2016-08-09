@@ -5,17 +5,19 @@ Xcode must be installed to run the Simulator
 
 ### Requirements, install as needed: ###
 
-##### React Native:#####
+##### React Native: #####
 ```
 $ npm i -g react-native-cli
 ```
 
-##### watchman:#####
+##### Watchman: #####
 ```
 $ brew install watchman
 ```
 
-##### clone this repo: #####
+##### Start the server: #####
+
+Clone this repo
 
 ```
 $ cd ComicBox
@@ -23,7 +25,7 @@ $ npm install
 $ npm start
 ```
 
-##### open a new terminal window: #####
+##### Open a new terminal window: #####
 
 ```
 $ react-native run-ios
