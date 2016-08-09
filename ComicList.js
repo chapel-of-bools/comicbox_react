@@ -13,6 +13,29 @@ import {
   Image
 } from 'react-native'
 
+var styles = StyleSheet.create({
+  thumb: {
+    width: 80,
+    height: 125,
+    marginRight: 10
+  },
+  textContainer: {
+    flex: 1
+  },
+  separator: {
+    height: 1,
+    backgroundColor: '#dddddd'
+  },
+  text: {
+    fontSize: 20,
+    color: '#656565'
+  },
+  rowContainer: {
+    flexDirection: 'row',
+    padding: 10
+  }
+});
+
 class ComicList extends Component {
   constructor(props) {
     super(props);
@@ -25,10 +48,27 @@ class ComicList extends Component {
 
   renderRow(rowData, sectionID, rowID) {
     return (
-      <TouchableHighlight
+      <TouchableHighlight onPress={() => this.rowPressed(rowData.guid)}
           underlayColor='#dddddd'>
         <View>
-          <Text>{rowData.title}</Text>
+          <View style={styles.rowContainer}>
+            <Image style={styles.thumb} source={{ uri: rowData.coverUrl }}/>
+            <View style={styles.textContainer}>
+              <Text style={styles.text}
+                    numberOfLines={1}>{rowData.title}
+              </Text>
+              <Text style={styles.text}
+                    numberOfLines={1}>Issue # {rowData.issueNo}
+              </Text>
+              <Text style={styles.text}
+                    numberOfLines={1}>Author: {rowData.author}
+              </Text>
+              <Text style={styles.text}
+                    numberOfLines={1}>Artist: {rowData.artist}
+              </Text>
+          </View>
+        </View>
+        <View style={styles.separator}/>
         </View>
       </TouchableHighlight>
     );

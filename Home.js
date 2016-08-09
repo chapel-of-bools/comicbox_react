@@ -53,17 +53,6 @@ var styles = {
     alignSelf: 'stretch',
     justifyContent: 'center'
   },
-  searchInput: {
-    height: 36,
-    padding: 4,
-    marginRight: 5,
-    flex: 4,
-    fontSize: 18,
-    borderWidth: 1,
-    borderColor: '#48BBEC',
-    borderRadius: 8,
-    color: '#48BBEC'
-  },
     image: {
     margin: 10,
     width: 217,
@@ -72,10 +61,18 @@ var styles = {
 }
 
 let data = [
-  { title: 'Swamp Thing',
-    issue_no: 35,
-    author: 'Alan Moore'
-}
+  { title: "The Vault of Horror",
+    issueNo: 14,
+    coverUrl: "https://d1466nnw0ex81e.cloudfront.net/n_iv/600/769927.jpg",
+    author: "Johnny Craig",
+    artist: "Johnny Craig"
+  },
+  { title: "Judge Dredd",
+    issueNo: 10,
+    coverUrl: "https://s-media-cache-ak0.pinimg.com/564x/4f/40/94/4f4094402f98fab07c64b5523f2c0a02.jpg",
+    author: "John Wagner",
+    artist: "Brian Bolland"
+  }
 ]
 
 class Home extends Component {
