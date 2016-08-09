@@ -1,5 +1,6 @@
 'use strict';
 import React, {Component} from 'react';
+var ComicView = require('./ComicView');
 
 import {
   NavigatorIOS,
@@ -45,7 +46,14 @@ class ComicList extends Component {
       dataSource: dataSource.cloneWithRows(this.props.data)
     };
   }
-
+  rowPressed(bookGuid) {
+    var book = this.props.data.filter(prop => prop.guid === bookGuid)[0];
+    this.props.navigator.push({
+      title: "View Book",
+      component: ComicView,
+      passProps: {book: book}
+    });
+  }
   renderRow(rowData, sectionID, rowID) {
     return (
       <TouchableHighlight onPress={() => this.rowPressed(rowData.guid)}
