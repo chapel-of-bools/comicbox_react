@@ -1,12 +1,12 @@
 'use strict';
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   AppRegistry,
   NavigatorIOS,
-  StyleSheet,
-  Text,
-  View
+  View,
+  Text
 } from 'react-native';
+var Welcome = require('./Welcome');
 
 var styles = {
   text: {
@@ -20,11 +20,17 @@ var styles = {
   }
 }
 
-class ComicBox extends Component {
+class ComicBoxApp extends Component {
   render() {
-    return <Text style={styles.text}>"Comic Box"</Text>
+    return (
+      <NavigatorIOS
+        style={styles.container}
+        initialRoute={{
+          title: 'Comic Box',
+          component: Welcome,
+        }}/>
+    );
   }
 }
 
-
-AppRegistry.registerComponent('ComicBox', () => ComicBox);
+AppRegistry.registerComponent('ComicBox', function() { return ComicBoxApp });
