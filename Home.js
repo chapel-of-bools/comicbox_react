@@ -80,10 +80,11 @@ let data = [
 
 class Home extends Component {
   showComics(){
+    console.log(this.props);
     this.props.navigator.push({
       title: 'Comics',
       component: ComicList,
-      passProps: {comics: data}
+      passProps: {data: data}
     })
   }
   render() {
@@ -93,7 +94,7 @@ class Home extends Component {
         <Image source={require('./resources/pow.jpg')} style={styles.image}/>
         <TouchableHighlight style={styles.button}
           underlayColor='#99d9f4'
-          onPress={() => this.showComics}>
+          onPress={this.showComics.bind(this)}>
             <Text style={styles.buttonText}>View Comic Collection</Text>
         </TouchableHighlight>
         <TouchableHighlight style={styles.button}

@@ -5,6 +5,7 @@ import {
   NavigatorIOS,
   StyleSheet,
   Text,
+  ListView,
   TextInput,
   View,
   TouchableHighlight,
@@ -28,7 +29,7 @@ class ComicList extends Component {
           underlayColor='#dddddd'>
         <View>
           <Text>{rowData.title}</Text>
-          </View>
+        </View>
       </TouchableHighlight>
     );
   }
