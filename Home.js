@@ -4,6 +4,7 @@ var ComicList = require('./ComicList');
 import * as firebase from 'firebase';
 
 import {
+  AlertIOS,
   NavigatorIOS,
   StyleSheet,
   Text,
@@ -110,28 +111,37 @@ class Home extends Component {
         data: comics
       });
     })
-    // comicsRef.on('value', (snap) => {
-    //   console.log(snap);
-      // snap.forEach((child) => {
-      //   console.log(child);
-      //
-    //   });
-    //
-    //   console.log(this);
-
-    // })
   }
-
   componentDidMount(){
     this.listenForComics(this.comicsRef);
   }
-
   showComics(){
     this.props.navigator.push({
       title: 'All Comics',
       component: ComicList,
       passProps: {data: this.state.data}
     })
+  }
+  showForm(){
+    this.props.navigator.push({
+      title: "Add Comic",
+      component: NewForm
+    })
+  }
+  _addComic(){
+    AlertIOS.prompt(
+      'Add New Comic',
+      'Enter comic information:',
+      [
+        {
+          text: 'Add',
+          onPress: (text) => {
+            this.comicsRef.push({ title: text })
+          }
+        },
+      ],
+      'plain-text'
+    );
   }
   render() {
     return (
@@ -144,7 +154,8 @@ class Home extends Component {
             <Text style={styles.buttonText}>View Comic Collection</Text>
         </TouchableHighlight>
         <TouchableHighlight style={styles.button}
-          underlayColor='#99d9f4'>
+          underlayColor='#99d9f4'
+          onPress={this._addComic.bind(this)}>
             <Text style={styles.buttonText}>Add New Comic</Text>
         </TouchableHighlight>
     </View>
