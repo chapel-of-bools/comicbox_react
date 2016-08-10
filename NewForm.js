@@ -23,7 +23,13 @@ var NewComic = t.struct({
   coverUrl: t.String
 });
 
-var options = {};
+var options = {
+  fields: {
+    issueNo: {
+      label: 'Issue #'
+    }
+  }
+};
 
 var styles = {
   container: {
