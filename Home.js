@@ -71,23 +71,6 @@ const firebaseConfig = {
 };
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 
-let data = [
-  { id: 1,
-    title: "The Vault of Horror",
-    issueNo: 14,
-    coverUrl: "https://d1466nnw0ex81e.cloudfront.net/n_iv/600/769927.jpg",
-    author: "Johnny Craig",
-    artist: "Johnny Craig"
-  },
-  { id: 2,
-    title: "Judge Dredd",
-    issueNo: 10,
-    coverUrl: "https://s-media-cache-ak0.pinimg.com/564x/4f/40/94/4f4094402f98fab07c64b5523f2c0a02.jpg",
-    author: "John Wagner",
-    artist: "Brian Bolland"
-  }
-]
-
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -156,9 +139,7 @@ class Home extends Component {
         </TouchableHighlight>
         <TouchableHighlight style={styles.button}
           underlayColor='#99d9f4'
-          onPress={this.showForm.bind(this)}
-          // onPress={this._addComic.bind(this)}
-          >
+          onPress={this.showForm.bind(this)}>
             <Text style={styles.buttonText}>Add New Comic</Text>
         </TouchableHighlight>
     </View>

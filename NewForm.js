@@ -38,6 +38,12 @@ var styles = {
     padding: 20,
     backgroundColor: '#ffffff',
   },
+  text: {
+    marginBottom: 20,
+    fontSize: 18,
+    textAlign: 'center',
+    color: '#656565'
+  },
   title: {
     fontSize: 30,
     alignSelf: 'center',
@@ -52,6 +58,7 @@ var styles = {
     height: 36,
     backgroundColor: '#48BBEC',
     borderColor: '#48BBEC',
+    borderColor: 'black',
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 10,
@@ -63,17 +70,18 @@ var styles = {
 class NewForm extends Component {
   onPress(){
     var value = this.refs.form.getValue();
-
+    this.comicsRef.push({ value })
     }
   render() {
     return (
       <View style={styles.container}>
+        <Text style={styles.text}>Enter new comic information:</Text>
         <Form
           ref="form"
           type={NewComic}
           options={options}
         />
-        <TouchableHighlight style={styles.button} onPress={this.onPress} underlayColor='#99d9f4'>
+        <TouchableHighlight style={styles.button} onPress={this.onPress.bind(this)} underlayColor='#99d9f4'>
           <Text style={styles.buttonText}>Save</Text>
         </TouchableHighlight>
       </View>
