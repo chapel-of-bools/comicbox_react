@@ -94,7 +94,7 @@ class Home extends Component {
   }
   listenForComics(comicsRef) {
 
-    comicsRef.once('value').then(snap => {
+    comicsRef.on('value', snap => {
       var comics = [];
       snap.forEach(child => {
         comics.push({
