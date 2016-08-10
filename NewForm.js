@@ -70,7 +70,7 @@ var styles = {
 class NewForm extends Component {
   onPress(){
     var value = this.refs.form.getValue();
-    this.comicsRef.push({ value })
+    this.props.comicsRef.push(value)
     }
   render() {
     return (

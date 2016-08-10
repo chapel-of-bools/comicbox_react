@@ -109,7 +109,8 @@ class Home extends Component {
   showForm(){
     this.props.navigator.push({
       title: "Add Comic",
-      component: NewForm
+      component: NewForm,
+      passProps: {comicsRef: this.comicsRef}
     })
   }
   // _addComic(){
