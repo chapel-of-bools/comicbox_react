@@ -61,13 +61,15 @@ var styles = {
 }
 
 let data = [
-  { title: "The Vault of Horror",
+  { id: 1,
+    title: "The Vault of Horror",
     issueNo: 14,
     coverUrl: "https://d1466nnw0ex81e.cloudfront.net/n_iv/600/769927.jpg",
     author: "Johnny Craig",
     artist: "Johnny Craig"
   },
-  { title: "Judge Dredd",
+  { id: 2,
+    title: "Judge Dredd",
     issueNo: 10,
     coverUrl: "https://s-media-cache-ak0.pinimg.com/564x/4f/40/94/4f4094402f98fab07c64b5523f2c0a02.jpg",
     author: "John Wagner",
@@ -79,7 +81,7 @@ class Home extends Component {
   showComics(){
     console.log(this.props);
     this.props.navigator.push({
-      title: 'Comics',
+      title: 'All Comics',
       component: ComicList,
       passProps: {data: data}
     })

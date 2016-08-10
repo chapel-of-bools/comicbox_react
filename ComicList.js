@@ -46,17 +46,17 @@ class ComicList extends Component {
       dataSource: dataSource.cloneWithRows(this.props.data)
     };
   }
-  rowPressed(bookGuid) {
-    var book = this.props.data.filter(prop => prop.guid === bookGuid)[0];
+  rowPressed(bookId) {
+    var book = this.props.data.filter(book => book.id === bookId)[0];
     this.props.navigator.push({
-      title: "View Book",
+      title: "View Comic",
       component: ComicView,
       passProps: {book: book}
     });
   }
   renderRow(rowData, sectionID, rowID) {
     return (
-      <TouchableHighlight onPress={() => this.rowPressed(rowData.guid)}
+      <TouchableHighlight onPress={() => this.rowPressed(rowData.id)}
           underlayColor='#dddddd'>
         <View>
           <View style={styles.rowContainer}>
