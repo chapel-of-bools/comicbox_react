@@ -113,21 +113,6 @@ class Home extends Component {
       passProps: {comicsRef: this.comicsRef}
     })
   }
-  // _addComic(){
-  //   AlertIOS.prompt(
-  //     'Add New Comic',
-  //     'Enter comic information:',
-  //     [
-  //       {
-  //         text: 'Add',
-  //         onPress: (text) => {
-  //           this.comicsRef.push({ title: text })
-  //         }
-  //       },
-  //     ],
-  //     'plain-text'
-  //   );
-  // }
   render() {
     return (
       <View style={styles.container}>

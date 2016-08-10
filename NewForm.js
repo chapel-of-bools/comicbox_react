@@ -1,6 +1,7 @@
 'use strict';
 import React, {Component} from 'react';
 import {
+  AlertIOS,
   NavigatorIOS,
   StyleSheet,
   Text,
@@ -71,6 +72,10 @@ class NewForm extends Component {
   onPress(){
     var value = this.refs.form.getValue();
     this.props.comicsRef.push(value)
+    AlertIOS.alert(
+      'Saved',
+      'Comic added to collection!'
+    );
     }
   render() {
     return (

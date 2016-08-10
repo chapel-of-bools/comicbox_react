@@ -7,7 +7,7 @@ import {
   Text
 } from 'react-native'
 
-var styles = StyleSheet.create({
+var styles = {
   container: {
     marginTop: 65
   },
@@ -38,7 +38,7 @@ var styles = StyleSheet.create({
     fontSize: 18,
     color: '#656565'
   }
-});
+};
 
 class ComicView extends Component {
   render() {
