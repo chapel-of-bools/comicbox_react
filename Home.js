@@ -1,6 +1,7 @@
 'use strict';
 import React, {Component} from 'react';
 var ComicList = require('./ComicList');
+var NewForm = require('./NewForm');
 import * as firebase from 'firebase';
 
 import {
@@ -128,21 +129,21 @@ class Home extends Component {
       component: NewForm
     })
   }
-  _addComic(){
-    AlertIOS.prompt(
-      'Add New Comic',
-      'Enter comic information:',
-      [
-        {
-          text: 'Add',
-          onPress: (text) => {
-            this.comicsRef.push({ title: text })
-          }
-        },
-      ],
-      'plain-text'
-    );
-  }
+  // _addComic(){
+  //   AlertIOS.prompt(
+  //     'Add New Comic',
+  //     'Enter comic information:',
+  //     [
+  //       {
+  //         text: 'Add',
+  //         onPress: (text) => {
+  //           this.comicsRef.push({ title: text })
+  //         }
+  //       },
+  //     ],
+  //     'plain-text'
+  //   );
+  // }
   render() {
     return (
       <View style={styles.container}>
@@ -155,7 +156,9 @@ class Home extends Component {
         </TouchableHighlight>
         <TouchableHighlight style={styles.button}
           underlayColor='#99d9f4'
-          onPress={this._addComic.bind(this)}>
+          onPress={this.showForm.bind(this)}
+          // onPress={this._addComic.bind(this)}
+          >
             <Text style={styles.buttonText}>Add New Comic</Text>
         </TouchableHighlight>
     </View>
