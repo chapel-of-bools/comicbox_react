@@ -1,6 +1,5 @@
 'use strict';
 import React, {Component} from 'react';
-import * as firebase from 'firebase';
 import {
   AppRegistry,
   NavigatorIOS,
@@ -20,6 +19,7 @@ var styles = {
     flex: 1
   }
 }
+
 
 class ComicBoxApp extends Component {
   render() {

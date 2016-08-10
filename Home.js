@@ -1,6 +1,7 @@
 'use strict';
 import React, {Component} from 'react';
 var ComicList = require('./ComicList');
+import * as firebase from 'firebase';
 
 import {
   NavigatorIOS,
@@ -60,6 +61,14 @@ var styles = {
   }
 }
 
+const firebaseConfig = {
+  apiKey: "AIzaSyDAvRg1RhFoFJNhBfbVu0zyn9By2zm2wTk",
+  authDomain: "comicbox-60a41.firebaseapp.com",
+  databaseURL: "https://comicbox-60a41.firebaseio.com",
+  storageBucket: "comicbox-60a41.appspot.com",
+};
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+
 let data = [
   { id: 1,
     title: "The Vault of Horror",
@@ -78,12 +87,50 @@ let data = [
 ]
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.comicsRef = firebaseApp.database().ref('/comics');
+    this.state = { data: [] }
+  }
+  listenForComics(comicsRef) {
+
+    comicsRef.once('value').then(snap => {
+      var comics = [];
+      snap.forEach(child => {
+        comics.push({
+          title: child.val().title,
+          artist: child.val().artist,
+          author: child.val().author,
+          coverUrl: child.val().coverUrl,
+          issueNo: child.val().issueNo,
+          _key: child.key
+        });
+      })
+      this.setState({
+        data: comics
+      });
+    })
+    // comicsRef.on('value', (snap) => {
+    //   console.log(snap);
+      // snap.forEach((child) => {
+      //   console.log(child);
+      //
+    //   });
+    //
+    //   console.log(this);
+
+    // })
+  }
+
+  componentDidMount(){
+    this.listenForComics(this.comicsRef);
+  }
+
   showComics(){
-    console.log(this.props);
     this.props.navigator.push({
       title: 'All Comics',
       component: ComicList,
-      passProps: {data: data}
+      passProps: {data: this.state.data}
     })
   }
   render() {
