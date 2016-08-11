@@ -76,7 +76,30 @@ class Home extends Component {
     super(props);
     this.comicsRef = firebaseApp.database().ref('/comics');
     this.state = { data: [] }
+    this.handleEdit = this.handleEdit.bind(this)
   }
+
+  handleEdit(comicBook) {
+    if (comicBook) {
+      let books = this.state.data
+      books = books.map( book => {
+        if (book._key == comicBook._key) {
+            let updatedBook = {}
+            updatedBook = Object.assign(updatedBook, book, comicBook)
+            this.comicsRef.child("/" + book._key).set(updatedBook)
+            return updatedBook
+        } else {
+          return book
+        }
+      })
+
+      this.setState({
+        data: books
+      })
+
+    }
+  }
+
   listenForComics(comicsRef) {
 
     comicsRef.on('value', snap => {
@@ -104,7 +127,9 @@ class Home extends Component {
       title: 'All Comics',
       component: ComicList,
       passProps: {data: this.state.data,
-                  comicsRef: this.comicsRef}
+                  comicsRef: this.comicsRef,
+                  handleEdit: this.handleEdit
+                }
     })
   }
   showForm(){

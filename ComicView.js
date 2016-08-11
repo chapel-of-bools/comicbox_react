@@ -79,16 +79,17 @@ class ComicView extends Component {
  'Confirm',
  'Are you sure you wish to delete this comic?',
  [
-   {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+   {text: 'Cancel', onPress: () => console.log('Cancelled'), style: 'cancel'},
    {text: 'Delete', onPress: () => console.log('Delete Pressed')},
  ],
 );
   }
   editComic(){
+    let {book, handleEdit} = this.props
     this.props.navigator.push({
       title: "Edit Comic",
       component: EditForm,
-      passProps: {comicsRef: this.comicsRef}
+      passProps: {book: book, handleEdit: handleEdit}
     })
   }
   render() {

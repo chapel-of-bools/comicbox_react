@@ -1,5 +1,6 @@
 'use strict';
 import React, {Component} from 'react';
+// var Home = require("./Home")
 import {
   AlertIOS,
   NavigatorIOS,
@@ -21,13 +22,17 @@ var EditComic = t.struct({
   issueNo: t.Number,
   artist: t.String,
   author: t.String,
-  coverUrl: t.String
+  coverUrl: t.String,
+  _key: t.String
 });
 
 var options = {
   fields: {
     issueNo: {
       label: 'Issue #'
+    },
+    _key: {
+      hidden: true
     }
   }
 };
@@ -67,17 +72,22 @@ var styles = {
     justifyContent: 'center'
   },
   image: {
-  alignSelf: 'center',
-  marginTop: 10,
-  width: 75,
-  height: 75
+    alignSelf: 'center',
+    marginTop: 10,
+    width: 75,
+    height: 75
   }
 }
 
 class EditForm extends Component {
   onPress(){
     var value = this.refs.form.getValue();
-    this.props.comicsRef.push(value)
+    if (value) {
+      this.props.handleEdit(value)
+    }
+    let {book} = this.props
+    this.props.navigator.popToTop(0)
+
     }
   render() {
     return (
@@ -86,6 +96,7 @@ class EditForm extends Component {
         <Form
           ref="form"
           type={EditComic}
+          value={this.props.book}
           options={options}
         />
         <TouchableHighlight style={styles.button} onPress={this.onPress.bind(this)} underlayColor='#99d9f4'>

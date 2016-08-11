@@ -47,13 +47,14 @@ class ComicList extends Component {
     };
   }
   rowPressed(bookKey) {
-    console.log(this.props.data);
     var book = this.props.data.filter(book => book._key === bookKey)[0];
+    let {handleEdit} = this.props
     this.props.navigator.push({
       title: "View Comic",
       component: ComicView,
       passProps: {book: book,
-                  comicsRef: this.comicsRef}
+                  handleEdit: handleEdit
+                }
     });
   }
   renderRow(rowData, sectionID, rowID) {
