@@ -4,8 +4,12 @@ import {
   StyleSheet,
   Image,
   View,
-  Text
+  Text,
+  TouchableHighlight,
+  AlertIOS
 } from 'react-native'
+var NewForm = require('./NewForm');
+var EditForm = require('./EditForm');
 
 var styles = {
   container: {
@@ -37,10 +41,46 @@ var styles = {
     alignSelf: 'center',
     fontSize: 18,
     color: '#656565'
+  },
+  buttonText: {
+    fontSize: 18,
+    color: 'white',
+    alignSelf: 'center'
+  },
+  button: {
+    height: 36,
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: '#48BBEC',
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 8,
+    margin: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
+  deleteButton: {
+    height: 36,
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: '#FF0034',
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 8,
+    margin: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
   }
 };
 
 class ComicView extends Component {
+  editComic(){
+    this.props.navigator.push({
+      title: "Edit Comic",
+      component: EditForm,
+      passProps: {comicsRef: this.comicsRef}
+    })
+  }
   render() {
     var book = this.props.book;
     return (
@@ -54,6 +94,15 @@ class ComicView extends Component {
         </View>
         <Text style={styles.description}>Written by {book.author}</Text>
         <Text style={styles.description}>Drawn by {book.artist}</Text>
+        <TouchableHighlight style={styles.button}
+          underlayColor='#99d9f4'
+          onPress={this.editComic.bind(this)}>
+            <Text style={styles.buttonText}>Edit Comic</Text>
+        </TouchableHighlight>
+        <TouchableHighlight style={styles.deleteButton}
+          underlayColor='#FF0034'>
+            <Text style={styles.buttonText}>Delete Comic</Text>
+        </TouchableHighlight>
       </View>
     );
   }
