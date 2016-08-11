@@ -52,7 +52,8 @@ class ComicList extends Component {
     this.props.navigator.push({
       title: "View Comic",
       component: ComicView,
-      passProps: {book: book}
+      passProps: {book: book,
+                  comicsRef: this.comicsRef}
     });
   }
   renderRow(rowData, sectionID, rowID) {

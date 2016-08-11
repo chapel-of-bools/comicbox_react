@@ -19,16 +19,25 @@ var Form = t.form.Form;
 var NewComic = t.struct({
   title: t.String,
   issueNo: t.Number,
-  artist: t.String,
-  author: t.String,
-  coverUrl: t.String
+  artist: t.maybe(t.String),
+  author: t.maybe(t.String),
+  coverUrl: t.maybe(t.String)
 });
 
 var options = {
   fields: {
     issueNo: {
       label: 'Issue #'
-    }
+    },
+    artist: {
+      label: 'Artist(s)'
+    },
+    author: {
+      label: 'Author(s)'
+    },
+    coverUrl: {
+      label: 'Cover Image URL'
+    },
   }
 };
 
@@ -71,11 +80,14 @@ var styles = {
 class NewForm extends Component {
   onPress(){
     var value = this.refs.form.getValue();
-    this.props.comicsRef.push(value)
-    AlertIOS.alert(
-      'Saved',
-      'Comic added to collection!'
-    );
+      if (value) {
+        this.props.comicsRef.push(value)
+      }
+    // this AlertIOS function should eventually redirect to ComicList
+    // AlertIOS.alert(
+    //   'Saved',
+    //   'Comic added to collection!'
+    // );
     }
   render() {
     return (

@@ -103,7 +103,8 @@ class Home extends Component {
     this.props.navigator.push({
       title: 'All Comics',
       component: ComicList,
-      passProps: {data: this.state.data}
+      passProps: {data: this.state.data,
+                  comicsRef: this.comicsRef}
     })
   }
   showForm(){
