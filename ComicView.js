@@ -74,6 +74,16 @@ var styles = {
 };
 
 class ComicView extends Component {
+  warnMessage(){
+    AlertIOS.alert(
+ 'Confirm',
+ 'Are you sure you wish to delete this comic?',
+ [
+   {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+   {text: 'Delete', onPress: () => console.log('Delete Pressed')},
+ ],
+);
+  }
   editComic(){
     this.props.navigator.push({
       title: "Edit Comic",
@@ -100,7 +110,8 @@ class ComicView extends Component {
             <Text style={styles.buttonText}>Edit Comic</Text>
         </TouchableHighlight>
         <TouchableHighlight style={styles.deleteButton}
-          underlayColor='#FF0034'>
+          underlayColor='#FF0034'
+          onPress={this.warnMessage.bind(this)}>
             <Text style={styles.buttonText}>Delete Comic</Text>
         </TouchableHighlight>
       </View>

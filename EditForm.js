@@ -65,6 +65,12 @@ var styles = {
     marginBottom: 10,
     alignSelf: 'stretch',
     justifyContent: 'center'
+  },
+  image: {
+  alignSelf: 'center',
+  marginTop: 10,
+  width: 75,
+  height: 75
   }
 }
 
@@ -83,8 +89,9 @@ class EditForm extends Component {
           options={options}
         />
         <TouchableHighlight style={styles.button} onPress={this.onPress.bind(this)} underlayColor='#99d9f4'>
-          <Text style={styles.buttonText}>Save</Text>
+          <Text style={styles.buttonText}>Save Updates</Text>
         </TouchableHighlight>
+        <Image source={require('./resources/box.png')} style={styles.image}/>
       </View>
     );
   }
