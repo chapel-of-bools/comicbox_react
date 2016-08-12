@@ -48,12 +48,13 @@ class ComicList extends Component {
   }
   rowPressed(bookKey) {
     var book = this.props.data.filter(book => book._key === bookKey)[0];
-    let {handleEdit} = this.props
+    let {handleEdit, handleDelete} = this.props
     this.props.navigator.push({
       title: "View Comic",
       component: ComicView,
       passProps: {book: book,
-                  handleEdit: handleEdit
+                  handleEdit: handleEdit,
+                  handleDelete: handleDelete
                 }
     });
   }

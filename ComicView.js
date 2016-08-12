@@ -58,38 +58,19 @@ var styles = {
     margin: 10,
     alignSelf: 'stretch',
     justifyContent: 'center'
-  },
-  deleteButton: {
-    height: 36,
-    flex: 1,
-    flexDirection: 'row',
-    backgroundColor: '#FF0034',
-    borderColor: 'black',
-    borderWidth: 1,
-    borderRadius: 8,
-    margin: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
   }
 };
 
 class ComicView extends Component {
-  warnMessage(){
-    AlertIOS.alert(
- 'Confirm',
- 'Are you sure you wish to delete this comic?',
- [
-   {text: 'Cancel', onPress: () => console.log('Cancelled'), style: 'cancel'},
-   {text: 'Delete', onPress: () => console.log('Delete Pressed')},
- ],
-);
-  }
   editComic(){
-    let {book, handleEdit} = this.props
+    let {book, handleEdit, handleDelete} = this.props
     this.props.navigator.push({
       title: "Edit Comic",
       component: EditForm,
-      passProps: {book: book, handleEdit: handleEdit}
+      passProps: {book: book,
+                  handleEdit: handleEdit,
+                  handleDelete: handleDelete
+                 }
     })
   }
   render() {
@@ -109,11 +90,6 @@ class ComicView extends Component {
           underlayColor='#99d9f4'
           onPress={this.editComic.bind(this)}>
             <Text style={styles.buttonText}>Edit Comic</Text>
-        </TouchableHighlight>
-        <TouchableHighlight style={styles.deleteButton}
-          underlayColor='#FF0034'
-          onPress={this.warnMessage.bind(this)}>
-            <Text style={styles.buttonText}>Delete Comic</Text>
         </TouchableHighlight>
       </View>
     );

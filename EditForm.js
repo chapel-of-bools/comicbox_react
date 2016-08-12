@@ -62,6 +62,8 @@ var styles = {
   },
   button: {
     height: 36,
+    flex: 1,
+    flexDirection: 'row',
     backgroundColor: '#48BBEC',
     borderColor: '#48BBEC',
     borderColor: 'black',
@@ -73,14 +75,41 @@ var styles = {
   },
   image: {
     alignSelf: 'center',
-    marginTop: 10,
     width: 75,
     height: 75
+  },
+  deleteButton: {
+    height: 36,
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: '#FF0034',
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 8,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
   }
 }
 
 class EditForm extends Component {
-  onPress(){
+  warnMessage(){
+    AlertIOS.alert(
+     'Confirm',
+     'Are you sure you wish to delete this comic?',
+     [
+       {text: 'Cancel', onPress: () => console.log('Cancelled'), style: 'cancel'},
+       {text: 'Delete', onPress: () => this.onDelete() } ,
+     ],
+    );
+  }
+
+  onDelete() {
+      var value = this.refs.form.getValue();
+      this.props.handleDelete(value)
+      this.props.navigator.popToTop(0)
+  }
+
+  editThisComic(){
     var value = this.refs.form.getValue();
     if (value) {
       this.props.handleEdit(value)
@@ -98,10 +127,15 @@ class EditForm extends Component {
           value={this.props.book}
           options={options}
         />
-        <TouchableHighlight style={styles.button} onPress={this.onPress.bind(this)} underlayColor='#99d9f4'>
+      <TouchableHighlight style={styles.button} onPress={this.editThisComic.bind(this)} underlayColor='#99d9f4'>
           <Text style={styles.buttonText}>Save Updates</Text>
         </TouchableHighlight>
-        <Image source={require('./resources/box.png')} style={styles.image}/>
+        <Text style={styles.text}>-or-</Text>
+      <TouchableHighlight style={styles.deleteButton}
+        underlayColor='#FF0034'
+        onPress={this.warnMessage.bind(this)}>
+          <Text style={styles.buttonText}>Delete Comic</Text>
+      </TouchableHighlight>
       </View>
     );
   }

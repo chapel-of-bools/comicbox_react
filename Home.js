@@ -77,6 +77,21 @@ class Home extends Component {
     this.comicsRef = firebaseApp.database().ref('/comics');
     this.state = { data: [] }
     this.handleEdit = this.handleEdit.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
+  }
+
+  handleDelete(comicBook){
+    console.log("got here");
+    if (comicBook) {
+      let books = this.state.data
+      books = books.filter( book => {
+        this.comicsRef.child("/" + comicBook._key).remove()
+        return ( book._key != comicBook._key )
+      })
+      this.setState({
+        data: books
+      })
+    }
   }
 
   handleEdit(comicBook) {
@@ -92,7 +107,6 @@ class Home extends Component {
           return book
         }
       })
-
       this.setState({
         data: books
       })
@@ -128,7 +142,8 @@ class Home extends Component {
       component: ComicList,
       passProps: {data: this.state.data,
                   comicsRef: this.comicsRef,
-                  handleEdit: this.handleEdit
+                  handleEdit: this.handleEdit,
+                  handleDelete: this.handleDelete
                 }
     })
   }
