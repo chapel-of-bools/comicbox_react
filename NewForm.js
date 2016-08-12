@@ -87,12 +87,14 @@ class NewForm extends Component {
   onPress(){
     var value = this.refs.form.getValue();
       if (value) {
+        console.log(value)
         this.props.comicsRef.push(value)
         // this AlertIOS function should eventually redirect to ComicList
         AlertIOS.alert(
           'Saved',
           'Comic added to collection!'
         );
+        this.props.navigator.popToTop(0)
       }
     }
   render() {

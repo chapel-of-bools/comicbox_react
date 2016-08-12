@@ -1,6 +1,6 @@
 'use strict';
 import React, {Component} from 'react';
-// var Home = require("./Home")
+
 import {
   AlertIOS,
   NavigatorIOS,
@@ -87,7 +87,6 @@ class EditForm extends Component {
     }
     let {book} = this.props
     this.props.navigator.popToTop(0)
-
     }
   render() {
     return (
