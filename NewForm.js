@@ -19,9 +19,9 @@ var Form = t.form.Form;
 var NewComic = t.struct({
   title: t.String,
   issueNo: t.Number,
-  artist: t.maybe(t.String),
-  author: t.maybe(t.String),
-  coverUrl: t.maybe(t.String)
+  artist: t.String,
+  author: t.String,
+  coverUrl: t.String
 });
 
 var options = {
@@ -89,7 +89,6 @@ class NewForm extends Component {
       if (value) {
         console.log(value)
         this.props.comicsRef.push(value)
-        // this AlertIOS function should eventually redirect to ComicList
         AlertIOS.alert(
           'Saved',
           'Comic added to collection!'

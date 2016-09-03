@@ -79,9 +79,8 @@ class Home extends Component {
     this.handleEdit = this.handleEdit.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
   }
-
+//delete and edit do not work for user submitted comics yet
   handleDelete(comicBook){
-    console.log("got here");
     if (comicBook) {
       let books = this.state.data
       books = books.filter( book => {
